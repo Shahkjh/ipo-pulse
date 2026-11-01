@@ -135,15 +135,27 @@ PROMPT = """You write "IPO Pulse", a weekly 5-line note on India's IPO pipeline.
 Use ONLY the JSON below (SEBI's register of draft offer documents). Never invent
 issue sizes, sectors, valuations or dates. If you infer a theme from company names,
 say "based on company names". Plain text only: no markdown, no links, no URLs. Ignore filings of type "Other" (notices) unless relevant.
-Exactly 5 numbered lines, each under 35 words:
-1) start with the count of NEW DRHPs this week vs last week (say "No new DRHPs" if zero), with names
-2) the trend
-3) a theme or cluster, if any (else: notable names)
-4) one filing to watch and why: prefer an Addendum or Updated DRHP (it means the filing is progressing through SEBI review); never call a fresh DRHP "progressing"
-5) "So what:" one takeaway for an IPO-watching investor or IB/PE aspirant.
+Line 1 (the count of new DRHPs) is written separately and shown to you below; do NOT repeat it.
+Write exactly 4 numbered lines, each under 35 words:
+1) the trend
+2) a theme or cluster, if any (else: notable names)
+3) one filing to watch and why: prefer an Addendum or Updated DRHP (it means the filing is progressing through SEBI review); never call a fresh DRHP "progressing"
+4) "So what:" one takeaway for an IPO-watching investor or IB/PE aspirant.
+
+LINE 1 (already written): {line1}
 
 DATA:
 {data}"""
+
+
+def fact_line(m: dict) -> str:
+    """Line 1, computed from data so the headline number is always exact."""
+    tw = [r for r in m["this_week"]["filings"] if r["type"] == "DRHP"]
+    n_prev = sum(1 for r in m["prev_week"]["filings"] if r["type"] == "DRHP")
+    upd = [r for r in m["this_week"]["filings"] if r["type"] in ("Addendum", "Updated DRHP")]
+    head = "No new DRHPs" if not tw else f"{len(tw)} new DRHP{'s' if len(tw) != 1 else ''} ({', '.join(r['company'] for r in tw)})"
+    tail = f"; {len(upd)} existing filing{'s' if len(upd) != 1 else ''} updated" if upd else ""
+    return f"{head} filed with SEBI this week, vs {n_prev} last week{tail}."
 
 
 def _lines(text: str) -> list[str]:
@@ -153,7 +165,8 @@ def _lines(text: str) -> list[str]:
 def ai_note(metrics: dict) -> list[str]:
     """Uses OpenAI if OPENAI_API_KEY is set, else Anthropic if ANTHROPIC_API_KEY is set,
     else a rule-based note. Any API error also falls back to the rule-based note."""
-    prompt = PROMPT.format(data=json.dumps(metrics, indent=1))
+    line1 = fact_line(metrics)
+    prompt = PROMPT.format(line1=line1, data=json.dumps(metrics, indent=1))
     try:
         if os.environ.get("OPENAI_API_KEY"):
             from openai import OpenAI
@@ -178,8 +191,8 @@ def ai_note(metrics: dict) -> list[str]:
     except Exception as exc:  # keep the weekly run alive
         print(f"AI step failed, using rule-based note: {exc}", file=sys.stderr)
         return rule_note(metrics)
-    lines = _lines(text)
-    return lines[:5] if len(lines) >= 5 else rule_note(metrics)
+    lines = [l for l in _lines(text) if not l.lower().startswith("line 1")]
+    return [line1] + lines[:4] if len(lines) >= 4 else rule_note(metrics)
 
 
 def rule_note(m: dict) -> list[str]:
@@ -189,7 +202,7 @@ def rule_note(m: dict) -> list[str]:
     adds = [r["company"] for r in tw["filings"] + m["early_next_week"] if r["type"] in ("Addendum", "Updated DRHP")]
     trend = "up" if d_now > d_prev else "down" if d_now < d_prev else "flat"
     return [
-        f"{d_now} new DRHPs filed this week ({names}), vs {d_prev} last week.",
+        fact_line(m),
         f"New filings are {trend} week on week.",
         f"{len(tw['filings'])} documents in total hit SEBI's register this week.",
         f"Filings progressing (addenda / updated DRHPs): {', '.join(adds) or 'none'}.",
