@@ -7,8 +7,10 @@ Live: https://bespoke-souffle-de95ef.netlify.app
 
 ## One-time setup
 1. **API key:** repo **Settings → Secrets and variables → Actions → New repository secret**
-   - Name `ANTHROPIC_API_KEY`, value: your key from console.anthropic.com
-   - (Without it, a simpler rule-based note is written.)
+   - OpenAI: name `OPENAI_API_KEY`, value from platform.openai.com/api-keys
+   - or Claude: name `ANTHROPIC_API_KEY`, value from console.anthropic.com
+   - (OpenAI is used if both are set. With neither, or if the API call fails, a simpler rule-based note is written.)
+   - Optional variable `OPENAI_MODEL` to change the model (default `gpt-4o-mini`).
 2. **Netlify:** open the `bespoke-souffle-de95ef` project → **Project configuration → Build & deploy → Link repository** → pick this repo.
    `netlify.toml` already sets the publish folder to `site`, with no build command.
 3. **Test:** **Actions → IPO Pulse weekly → Run workflow**. After that it runs every Monday at 7:00 IST.

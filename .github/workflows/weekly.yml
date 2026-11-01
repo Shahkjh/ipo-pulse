@@ -16,6 +16,8 @@ jobs:
       - run: python ipo_pulse.py
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL }}
           FEEDBACK_URL: ${{ vars.FEEDBACK_URL }}
           SITE_URL: ${{ vars.SITE_URL }}
       - name: Commit snapshot and page

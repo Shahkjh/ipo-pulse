@@ -5,7 +5,8 @@ diff vs last week -> Claude writes a 5-line note from the diff only ->
 write site/index.html (with a feedback link).
 
 Env vars:
-  ANTHROPIC_API_KEY   required for the AI note (falls back to a rule-based note)
+  OPENAI_API_KEY      AI note via OpenAI (model: OPENAI_MODEL, default gpt-4o-mini)
+  ANTHROPIC_API_KEY   or AI note via Claude (used if no OpenAI key)
   FEEDBACK_URL        optional link to a Google Form / Tally form for reader feedback
   CLAUDE_MODEL        optional, default claude-sonnet-5-5
 """
@@ -140,19 +141,39 @@ DATA:
 {data}"""
 
 
+def _lines(text: str) -> list[str]:
+    return [re.sub(r"^\s*\d+[\).]\s*", "", l).strip() for l in text.splitlines() if l.strip()]
+
+
 def ai_note(metrics: dict) -> list[str]:
-    key = os.environ.get("ANTHROPIC_API_KEY")
-    if not key:
+    """Uses OpenAI if OPENAI_API_KEY is set, else Anthropic if ANTHROPIC_API_KEY is set,
+    else a rule-based note. Any API error also falls back to the rule-based note."""
+    prompt = PROMPT.format(data=json.dumps(metrics, indent=1))
+    try:
+        if os.environ.get("OPENAI_API_KEY"):
+            from openai import OpenAI
+            client = OpenAI()
+            resp = client.chat.completions.create(
+                model=os.environ.get("OPENAI_MODEL") or "gpt-4o-mini",
+                messages=[{"role": "user", "content": prompt}],
+                max_tokens=600,
+            )
+            text = resp.choices[0].message.content or ""
+        elif os.environ.get("ANTHROPIC_API_KEY"):
+            import anthropic
+            client = anthropic.Anthropic()
+            msg = client.messages.create(
+                model=os.environ.get("CLAUDE_MODEL") or "claude-sonnet-5-5",
+                max_tokens=600,
+                messages=[{"role": "user", "content": prompt}],
+            )
+            text = "".join(b.text for b in msg.content if b.type == "text")
+        else:
+            return rule_note(metrics)
+    except Exception as exc:  # keep the weekly run alive
+        print(f"AI step failed, using rule-based note: {exc}", file=sys.stderr)
         return rule_note(metrics)
-    import anthropic
-    client = anthropic.Anthropic(api_key=key)
-    msg = client.messages.create(
-        model=os.environ.get("CLAUDE_MODEL", "claude-sonnet-5-5"),
-        max_tokens=600,
-        messages=[{"role": "user", "content": PROMPT.format(data=json.dumps(metrics, indent=1))}],
-    )
-    text = "".join(b.text for b in msg.content if b.type == "text")
-    lines = [re.sub(r"^\s*\d+[\).]\s*", "", l).strip() for l in text.splitlines() if l.strip()]
+    lines = _lines(text)
     return lines[:5] if len(lines) >= 5 else rule_note(metrics)
 
 
