@@ -1,203 +1,42 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta property="og:type" content="website">
-<meta property="og:title" content="IPO Pulse: weekly AI note on India's IPO pipeline">
-<meta property="og:description" content="A five-line weekly note on new IPO filings with SEBI: new DRHPs, trends, sector themes and what it means for investors.">
-<meta property="og:url" content="https://bespoke-souffle-de95ef.netlify.app/">
-<meta property="og:image" content="https://bespoke-souffle-de95ef.netlify.app/og-image.png">
-<meta property="og:image:width" content="1200"><meta property="og:image:height" content="627">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="description" content="IPO Pulse: a weekly 5-line note on new IPO filings with SEBI.">
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>IPO Pulse</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<meta property="og:type" content="website"><meta property="og:title" content="IPO Pulse: weekly AI note on India's IPO pipeline">
+<meta property="og:description" content="A five-line weekly note on new IPO filings with SEBI: new DRHPs, trends, sector themes and what it means for investors."><meta property="og:url" content="/">
+<meta property="og:image" content="/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="627">
+<meta name="twitter:card" content="summary_large_image"><meta name="description" content="A five-line weekly note on new IPO filings with SEBI: new DRHPs, trends, sector themes and what it means for investors.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700&family=Instrument+Sans:wght@400;600&family=JetBrains+Mono:wght@500&display=swap">
 <style>
-/* Layout: a single column "weekly register" — note first, then the numbers, the filing log, and the feedback slip. */
-:root{
-  --paper:#F4F6F3; --surface:#FFFFFF; --ink:#132320; --muted:#5B6B67; --rule:#D5DDD9;
-  --accent:#0E6E55; --accent-soft:#E1F0EA; --amber:#A8661A; --amber-soft:#F6EBDC;
-  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
-  --body:"Instrument Sans", "Segoe UI", system-ui, sans-serif;
-  --mono:"JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --paper:#0F1716; --surface:#16211F; --ink:#E4ECE9; --muted:#97A8A3; --rule:#2A3936;
-  --accent:#4CC79F; --accent-soft:#173A31; --amber:#E0A458; --amber-soft:#3A2C18; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --paper:#0F1716; --surface:#16211F; --ink:#E4ECE9; --muted:#97A8A3; --rule:#2A3936;
-  --accent:#4CC79F; --accent-soft:#173A31; --amber:#E0A458; --amber-soft:#3A2C18; color-scheme:dark}
-*{box-sizing:border-box}
-body{background:var(--paper);color:var(--ink);font:16px/1.55 var(--body);
-  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:28px 56px}
-.wrap{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:40px}
-h1,h2{font-family:var(--display);text-wrap:balance;margin:0;letter-spacing:-.01em}
-h1{font-size:clamp(2.2rem,7vw,3.2rem);line-height:1.02;font-weight:700}
-h2{font-size:1.35rem;font-weight:700}
-.label{font:500 .72rem/1 var(--mono);text-transform:uppercase;letter-spacing:.09em;color:var(--muted)}
-.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
-header{display:flex;flex-direction:column;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:20px}
-.meta{display:flex;flex-wrap:wrap;gap:8px 18px;color:var(--muted);font-size:.9rem}
-.pill{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;font:500 .75rem/1.4 var(--mono);background:var(--accent-soft);color:var(--accent)}
-.pill.amber{background:var(--amber-soft);color:var(--amber)}
-section{display:flex;flex-direction:column;gap:16px}
-.note{list-style:none;margin:0;padding:0;counter-reset:n;display:flex;flex-direction:column}
-.note li{counter-increment:n;display:grid;grid-template-columns:2.2rem 1fr;gap:10px;padding:14px 0;border-top:1px solid var(--rule)}
-.note li:last-child{border-bottom:1px solid var(--rule)}
-.note li::before{content:counter(n);font:500 .85rem/1.6 var(--mono);color:var(--accent)}
-.note b{font-weight:600}
-.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.kpi{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:14px;display:flex;flex-direction:column;gap:6px;min-width:0}
-.kpi .v{font:700 2rem/1 var(--display)}
-.kpi .d{font-size:.82rem;color:var(--muted)}
-.chart{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:16px;overflow-x:auto}
-.chart svg{display:block;width:100%;min-width:320px;height:auto}
-.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:.8rem;color:var(--muted);margin-top:8px}
-.sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
-.tablebox{overflow-x:auto;border:1px solid var(--rule);border-radius:6px;background:var(--surface)}
-table{border-collapse:collapse;width:100%;min-width:480px;font-size:.92rem}
-th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
-th{font:500 .72rem/1.2 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
-tr:last-child td{border-bottom:0}
-tr.sep td{background:var(--paper);font:500 .72rem/1.2 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
-a{color:var(--accent);text-underline-offset:2px}
-.small{font-size:.85rem;color:var(--muted)}
-.feedback{background:var(--surface);border:1px solid var(--ink);border-radius:8px;padding:20px;display:flex;flex-direction:column;gap:18px}
-fieldset{border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
-legend{font-weight:600;margin-bottom:8px;padding:0}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{position:relative}
-.chip input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
-.chip span{display:inline-block;padding:7px 14px;border:1px solid var(--rule);border-radius:999px;font-size:.9rem;background:var(--paper);cursor:pointer}
-.chip input:checked + span{background:var(--accent);border-color:var(--accent);color:var(--surface)}
-.chip input:focus-visible + span{outline:2px solid var(--accent);outline-offset:2px}
-textarea{width:100%;min-height:96px;font:inherit;padding:10px 12px;border:1px solid var(--rule);border-radius:6px;background:var(--paper);color:var(--ink);resize:vertical}
-textarea:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
-.row{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
-.btn{display:inline-block;font:600 1rem/1 var(--body);padding:13px 22px;border-radius:6px;background:var(--accent);color:var(--surface);text-decoration:none}
-.btn:hover{filter:brightness(1.08)}
-.btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
-button{font:600 .95rem/1 var(--body);padding:11px 18px;border-radius:6px;border:1px solid var(--accent);background:var(--accent);color:var(--surface);cursor:pointer}
-button.ghost{background:transparent;color:var(--accent)}
-button:disabled{opacity:.5;cursor:default}
-button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
-.status{font-size:.9rem;color:var(--muted)}
-.inbox{display:flex;flex-direction:column;gap:10px}
-.entry{border-top:1px solid var(--rule);padding-top:10px;display:flex;flex-direction:column;gap:4px}
-.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font:500 .8rem/1.4 var(--mono)}
-.flow span{padding:4px 8px;border:1px solid var(--rule);border-radius:4px;background:var(--surface)}
-.flow i{font-style:normal;color:var(--muted)}
+:root{--paper:#F4F6F3;--surface:#fff;--ink:#132320;--muted:#5B6B67;--rule:#D5DDD9;--accent:#0E6E55;--accent-soft:#E1F0EA;--amber:#A8661A;--amber-soft:#F6EBDC}
+@media (prefers-color-scheme:dark){:root{--paper:#0F1716;--surface:#16211F;--ink:#E4ECE9;--muted:#97A8A3;--rule:#2A3936;--accent:#4CC79F;--accent-soft:#173A31;--amber:#E0A458;--amber-soft:#3A2C18;color-scheme:dark}}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 "Instrument Sans",system-ui,sans-serif;padding:28px 16px 56px}
+.wrap{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:36px}
+h1,h2{font-family:"Bricolage Grotesque",system-ui,sans-serif;margin:0;text-wrap:balance}h1{font-size:clamp(2rem,6vw,2.8rem);line-height:1.05}h2{font-size:1.3rem}
+.label{font:500 .72rem/1 "JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.09em;color:var(--muted)}.mono{font-family:"JetBrains Mono",monospace}
+header{display:flex;flex-direction:column;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:20px}.meta{display:flex;flex-wrap:wrap;gap:8px 18px;color:var(--muted);font-size:.9rem}
+.pill{display:inline-block;padding:3px 10px;border-radius:999px;font:500 .75rem/1.4 "JetBrains Mono",monospace;background:var(--accent-soft);color:var(--accent)}.pill.amber{background:var(--amber-soft);color:var(--amber)}
+section{display:flex;flex-direction:column;gap:14px}ol{list-style:none;margin:0;padding:0;counter-reset:n}
+ol li{counter-increment:n;display:grid;grid-template-columns:2rem 1fr;gap:10px;padding:13px 0;border-top:1px solid var(--rule)}ol li:last-child{border-bottom:1px solid var(--rule)}
+ol li::before{content:counter(n);font:500 .85rem/1.6 "JetBrains Mono",monospace;color:var(--accent)}
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.kpi{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:14px}
+.kpi b{display:block;font:700 2rem/1.1 "Bricolage Grotesque",sans-serif;margin-top:6px}.kpi span.d{font-size:.82rem;color:var(--muted)}
+.tablebox{overflow-x:auto;border:1px solid var(--rule);border-radius:6px;background:var(--surface)}table{border-collapse:collapse;width:100%;min-width:460px;font-size:.92rem}
+td,th{text-align:left;padding:10px 12px;border-bottom:1px solid var(--rule)}th{font:500 .72rem "JetBrains Mono",monospace;text-transform:uppercase;color:var(--muted)}
+tr.sep td{background:var(--paper);font:500 .72rem "JetBrains Mono",monospace;text-transform:uppercase;color:var(--muted)}a{color:var(--accent)}.small{font-size:.85rem;color:var(--muted)}
+.fb{background:var(--surface);border:1px solid var(--ink);border-radius:8px;padding:20px;display:flex;flex-direction:column;gap:12px}
+.btn{display:inline-block;align-self:flex-start;padding:13px 22px;border-radius:6px;background:var(--accent);color:var(--surface);text-decoration:none;font-weight:600}
 @media (max-width:520px){.kpis{grid-template-columns:1fr}}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
-</style>
-</head><body>
-
-
-<div class="wrap">
-  <header>
-    <span class="label">IPO Pulse · Weekly note</span>
-    <h1>Two new IPO filings last week, after a crowded start to October</h1>
-    <div class="meta">
-      <span class="mono">Week of Mon 19 – Sun 25 Oct 2026</span>
-      <span>Source: SEBI, Draft Offer Documents filed</span>
-      <span class="pill">v1 · built 29 Oct</span>
-    </div>
-  </header>
-
-  <section aria-labelledby="note-h">
-    <h2 id="note-h">The five-line note</h2>
-    <ol class="note">
-      <li><span><b>2 new DRHPs</b> were filed with SEBI on 19–25 Oct: GAMP Services and Hunger Pangs. The week before had 1 DRHP (Soleos Energy) and 1 updated filing (Paramotor Digital Technology, UDRHP-I).</span></li>
-      <li><span><b>New filings have slowed since the 5–11 Oct rush.</b> At least 14 DRHPs were filed that week, 11 of them on 5 Oct alone.</span></li>
-      <li><span><b>Energy is October's clearest theme, based on company names.</b> Inox Clean Energy, Deon Energy, Grace Renewable Energy, Integrum Energy Infrastructure and Soleos Energy all filed DRHPs.</span></li>
-      <li><span><b>Watch Oravel Stays (OYO's parent company).</b> It filed an addendum to its DRHP on Mon 26 Oct. Tablespace Technologies filed one on 21 Oct. An addendum updates a filing that SEBI is already reviewing.</span></li>
-      <li><span><b>So what:</b> most of October's pipeline arrived on a single day. Next week's count will show whether 5 Oct was a one-off spike or the start of a busier season.</span></li>
-    </ol>
-  </section>
-
-  <section aria-labelledby="num-h">
-    <h2 id="num-h">The numbers</h2>
-    <div class="kpis">
-      <div class="kpi"><span class="label">New DRHPs, last week</span><span class="v mono">2</span><span class="d">vs 1 the week before</span></div>
-      <div class="kpi"><span class="label">Addenda, last week</span><span class="v mono">1</span><span class="d">+2 on Mon 26 Oct</span></div>
-      <div class="kpi"><span class="label">DRHPs, 5–11 Oct</span><span class="v mono">14+</span><span class="d">at least; one listing page read</span></div>
-    </div>
-    <div class="chart" role="img" aria-label="Filings per week by type: 5 to 11 Oct, 14 DRHPs, 1 addendum, 2 other. 12 to 18 Oct, 1 DRHP, 1 updated DRHP, 1 addendum. 19 to 25 Oct, 2 DRHPs, 1 addendum.">
-      <span class="label">SEBI filings per week, by type</span>
-      <svg viewBox="0 0 560 230" id="chart"></svg>
-      <div class="legend">
-        <span><i class="sw" style="background:var(--accent)"></i>New DRHP</span>
-        <span><i class="sw" style="background:var(--amber)"></i>Addendum / updated DRHP</span>
-        <span><i class="sw" style="background:var(--rule)"></i>Other documents</span>
-      </div>
-    </div>
-    <p class="small">A filing counts as a DRHP, addendum or updated DRHP (UDRHP) based on its title in SEBI's register. Counts for 5–11 Oct come from the first page of the listing, so they are a minimum.</p>
-  </section>
-
-  <section aria-labelledby="log-h">
-    <h2 id="log-h">Filing log</h2>
-    <div class="tablebox">
-      <table>
-        <thead><tr><th>Date</th><th>Company</th><th>Document</th></tr></thead>
-        <tbody>
-          <tr class="sep"><td colspan="3">Early signal · Mon 26 Oct</td></tr>
-          <tr><td class="mono">26 Oct</td><td><a href="https://www.sebi.gov.in/filings/public-issues/oct-2026/oravel-stays-limited-addendum-to-drhp_105418.html" target="_blank" rel="noopener">Oravel Stays</a></td><td><span class="pill amber">Addendum</span></td></tr>
-          <tr><td class="mono">26 Oct</td><td><a href="https://www.sebi.gov.in/filings/public-issues/oct-2026/integris-medtech-limited-addendum-to-drhp_105416.html" target="_blank" rel="noopener">Integris Medtech</a></td><td><span class="pill amber">Addendum</span></td></tr>
-          <tr class="sep"><td colspan="3">This week · 19–25 Oct</td></tr>
-          <tr><td class="mono">21 Oct</td><td><a href="https://www.sebi.gov.in/filings/public-issues/oct-2026/gamp-services-limited-drhp_105424.html" target="_blank" rel="noopener">GAMP Services</a></td><td><span class="pill">DRHP</span></td></tr>
-          <tr><td class="mono">21 Oct</td><td><a href="https://www.sebi.gov.in/filings/public-issues/oct-2026/hunger-pangs-limited-drhp_105347.html" target="_blank" rel="noopener">Hunger Pangs</a></td><td><span class="pill">DRHP</span></td></tr>
-          <tr><td class="mono">21 Oct</td><td><a href="https://www.sebi.gov.in/filings/public-issues/oct-2026/tablespace-technologies-limited-addendum-to-drhp_105343.html" target="_blank" rel="noopener">Tablespace Technologies</a></td><td><span class="pill amber">Addendum</span></td></tr>
-          <tr class="sep"><td colspan="3">Last week · 12–18 Oct</td></tr>
-          <tr><td class="mono">14 Oct</td><td><a href="https://www.sebi.gov.in/filings/public-issues/oct-2026/paramotor-digital-technology-limited-udrhp-i_105258.html" target="_blank" rel="noopener">Paramotor Digital Technology</a></td><td><span class="pill amber">UDRHP-I</span></td></tr>
-          <tr><td class="mono">13 Oct</td><td><a href="https://www.sebi.gov.in/filings/public-issues/oct-2026/soleos-energy-limited-drhp_105196.html" target="_blank" rel="noopener">Soleos Energy</a></td><td><span class="pill">DRHP</span></td></tr>
-          <tr><td class="mono">12 Oct</td><td><a href="https://www.sebi.gov.in/filings/public-issues/oct-2026/oswal-cables-limited-addendum-to-drhp_105234.html" target="_blank" rel="noopener">Oswal Cables</a></td><td><span class="pill amber">Addendum</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="small">Full register: <a href="https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&ssid=15&smid=10" target="_blank" rel="noopener">SEBI, Draft Offer Documents filed with SEBI</a>.</p>
-  </section>
-
-  <section aria-labelledby="fb-h">
-    <div class="feedback">
-      <div style="display:flex;flex-direction:column;gap:6px">
-        <span class="label">Help shape IPO Pulse</span>
-        <h2 id="fb-h">Was this week's note useful?</h2>
-      </div>
-      <p style="margin:0">Three quick questions: how useful it was, what to add next, and anything wrong or missing. It takes about 30 seconds.</p>
-      <div class="row">
-        <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfQZ6C4ob-sq7mzRZ9Zxy6Nax07ioTTsDDY0lxFWTBpUgh2Bg/viewform?usp=sharing" target="_blank" rel="noopener">Give feedback</a>
-        <span class="small">Opens a Google Form</span>
-      </div>
-    </div>
-  </section>
-
-  <section aria-labelledby="how-h">
-    <h2 id="how-h">How it works</h2>
-    <div class="flow"><span>SEBI filings register</span><i>→</i><span>Save this week's snapshot</span><i>→</i><span>Compare with last week</span><i>→</i><span>Claude writes 5 lines</span><i>→</i><span>Publish</span></div>
-    <p class="small">The AI writes only from the comparison table, so every number in the note can be traced to a SEBI listing. Issue sizes and the listing calendar are next on the roadmap.</p>
-  </section>
-</div>
-
-<script>
-// ---------- chart ----------
-(function(){
-  const weeks=[{l:"5–11 Oct",d:14,a:1,o:2},{l:"12–18 Oct",d:1,a:2,o:0},{l:"19–25 Oct",d:2,a:1,o:0}];
-  const svg=document.getElementById("chart"),NS="http://www.w3.org/2000/svg";
-  const W=560,H=230,L=36,R=12,T=14,B=36,max=18,ph=H-T-B;
-  const y=v=>T+ph-(v/max)*ph;
-  const el=(n,a,t)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);if(t!=null)e.textContent=t;svg.appendChild(e);return e;};
-  [0,6,12,18].forEach(v=>{el("line",{x1:L,x2:W-R,y1:y(v),y2:y(v),stroke:"var(--rule)","stroke-width":1});
-    el("text",{x:L-8,y:y(v)+4,"text-anchor":"end","font-size":11,fill:"var(--muted)","font-family":"JetBrains Mono, monospace"},v);});
-  const bw=(W-L-R)/weeks.length, barW=Math.min(84,bw*0.5);
-  weeks.forEach((w,i)=>{
-    const cx=L+bw*i+bw/2; let base=0;
-    [["d","var(--accent)"],["a","var(--amber)"],["o","var(--rule)"]].forEach(([k,c])=>{
-      const v=w[k]; if(!v) return;
-      el("rect",{x:cx-barW/2,y:y(base+v),width:barW,height:y(base)-y(base+v),fill:c}); base+=v;});
-    el("text",{x:cx,y:y(base)-6,"text-anchor":"middle","font-size":12,"font-weight":600,fill:"var(--ink)","font-family":"JetBrains Mono, monospace"},(i===0?base+"+":base));
-    el("text",{x:cx,y:H-12,"text-anchor":"middle","font-size":12,fill:"var(--muted)","font-family":"Instrument Sans, sans-serif"},w.l);
-  });
-})();
-
-</script>
-
-</body></html>
+</style></head><body><div class="wrap">
+<header><span class="label">IPO Pulse · Weekly note</span><h1>This week saw 2 new DRHPs: GAMP Services and Hunger Pangs, compared to 1 last week.</h1>
+<div class="meta"><span class="mono">Week of 19 Oct – 25 Oct 2026</span><span>Source: SEBI, Draft Offer Documents filed</span><span class="pill">Auto-updated every Monday</span></div></header>
+<section><h2>The five-line note</h2><ol><li><span>This week saw 2 new DRHPs: GAMP Services and Hunger Pangs, compared to 1 last week.</span></li><li><span>The trend continues with modest activity in the IPO pipeline.</span></li><li><span>Based on company names, there appears to be interest in the food and services sector.</span></li><li><span>Watch GAMP Services’ filing as it progresses with a new DRHP submission.</span></li><li><span>So what: Investors and aspirants should pay attention to emerging sectors like food services for potential opportunities.</span></li></ol></section>
+<section><h2>The numbers</h2><div class="kpis">
+<div class="kpi"><span class="label">New DRHPs</span><b class="mono">2</b><span class="d">vs 1 the week before</span></div>
+<div class="kpi"><span class="label">Addenda / updates</span><b class="mono">1</b><span class="d">filings progressing</span></div>
+<div class="kpi"><span class="label">All documents</span><b class="mono">3</b><span class="d">filed this week</span></div></div></section>
+<section><h2>Filing log</h2><div class="tablebox"><table><thead><tr><th>Date</th><th>Company</th><th>Document</th></tr></thead><tbody><tr class="sep"><td colspan="3">Early signal · after week end</td></tr><tr><td class="mono">29 Oct</td><td><a href="https://www.sebi.gov.in/filings/public-issues/oct-2026/carlsberg-india-limited-udrhp-1_105485.html" target="_blank" rel="noopener">Carlsberg India</a></td><td><span class="pill amber">Updated DRHP</span></td></tr><tr><td class="mono">27 Oct</td><td><a href="https://www.sebi.gov.in/filings/public-issues/oct-2026/intellius-recode-limited-notice-to-investors_105445.html" target="_blank" rel="noopener">INTELLIUS RECODE LIMITED - Notice to Investors</a></td><td><span class="pill amber">Other</span></td></tr><tr><td class="mono">26 Oct</td><td><a href="https://www.sebi.gov.in/filings/public-issues/oct-2026/oravel-stays-limited-addendum-to-drhp_105418.html" target="_blank" rel="noopener">Oravel Stays</a></td><td><span class="pill amber">Addendum</span></td></tr><tr><td class="mono">26 Oct</td><td><a href="https://www.sebi.gov.in/filings/public-issues/oct-2026/integris-medtech-limited-addendum-to-drhp_105416.html" target="_blank" rel="noopener">Integris Medtech</a></td><td><span class="pill amber">Addendum</span></td></tr><tr class="sep"><td colspan="3">This week · 19 Oct–25 Oct</td></tr><tr><td class="mono">21 Oct</td><td><a href="https://www.sebi.gov.in/filings/public-issues/oct-2026/gamp-services-limited-drhp_105424.html" target="_blank" rel="noopener">GAMP Services</a></td><td><span class="pill">DRHP</span></td></tr><tr><td class="mono">21 Oct</td><td><a href="https://www.sebi.gov.in/filings/public-issues/oct-2026/hunger-pangs-limited-drhp_105347.html" target="_blank" rel="noopener">Hunger Pangs</a></td><td><span class="pill">DRHP</span></td></tr><tr><td class="mono">21 Oct</td><td><a href="https://www.sebi.gov.in/filings/public-issues/oct-2026/tablespace-technologies-limited-addendum-to-drhp_105343.html" target="_blank" rel="noopener">Tablespace Technologies</a></td><td><span class="pill amber">Addendum</span></td></tr><tr class="sep"><td colspan="3">Previous week</td></tr><tr><td class="mono">14 Oct</td><td><a href="https://www.sebi.gov.in/filings/public-issues/oct-2026/paramotor-digital-technology-limited-udrhp-i_105258.html" target="_blank" rel="noopener">Paramotor Digital Technology</a></td><td><span class="pill amber">Updated DRHP</span></td></tr><tr><td class="mono">13 Oct</td><td><a href="https://www.sebi.gov.in/filings/public-issues/oct-2026/soleos-energy-limited-drhp_105196.html" target="_blank" rel="noopener">Soleos Energy</a></td><td><span class="pill">DRHP</span></td></tr><tr><td class="mono">12 Oct</td><td><a href="https://www.sebi.gov.in/filings/public-issues/oct-2026/oswal-cables-limited-addendum-to-drhp_105234.html" target="_blank" rel="noopener">OSWAL CABLES</a></td><td><span class="pill amber">Addendum</span></td></tr></tbody></table></div>
+<p class="small">Full register: <a href="https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&amp;sid=3&amp;ssid=15&amp;smid=10" target="_blank" rel="noopener">SEBI, Draft Offer Documents filed with SEBI</a>.</p></section>
+<section><div class="fb"><span class="label">Help shape IPO Pulse</span><h2>Was this week's note useful?</h2>
+<p style="margin:0">Three quick questions. It takes about 30 seconds.</p><a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfQZ6C4ob-sq7mzRZ9Zxy6Nax07ioTTsDDY0lxFWTBpUgh2Bg/viewform?usp=sharing" target="_blank" rel="noopener">Give feedback</a></div></section>
+<section><h2>How it works</h2><p class="small">Every Monday a script reads SEBI's register, saves a snapshot, compares it with the previous week, and Claude writes the five lines from that comparison only. Every number can be traced to a SEBI listing.</p></section>
+</div></body></html>
