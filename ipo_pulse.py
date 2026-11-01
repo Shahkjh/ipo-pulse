@@ -88,9 +88,13 @@ def parse_listing(page_html: str) -> list[dict]:
 
 # ---------- 2. snapshot + diff ----------
 def week_bounds(today: dt.date) -> tuple[dt.date, dt.date]:
-    """Last complete Mon-Sun week before `today`."""
-    last_monday = today - dt.timedelta(days=today.weekday() + 7)
-    return last_monday, last_monday + dt.timedelta(days=6)
+    """Most recent Mon-Sun week. On a Sunday that is the current week (ending today);
+    on any other day it is the last complete week."""
+    if today.weekday() == 6:
+        start = today - dt.timedelta(days=6)
+    else:
+        start = today - dt.timedelta(days=today.weekday() + 7)
+    return start, start + dt.timedelta(days=6)
 
 
 def in_range(rows, start, end):
@@ -134,7 +138,7 @@ say "based on company names". Exactly 5 numbered lines, each under 35 words:
 1) new DRHPs this week vs last week (counts + names)
 2) the trend
 3) a theme or cluster, if any (else: notable names)
-4) one filing to watch and why (addenda / updated DRHPs mean a filing is progressing)
+4) one filing to watch and why: prefer an Addendum or Updated DRHP (it means the filing is progressing through SEBI review); never call a fresh DRHP "progressing"
 5) "So what:" one takeaway for an IPO-watching investor or IB/PE aspirant.
 
 DATA:
