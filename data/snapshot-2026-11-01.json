@@ -202,9 +202,50 @@
     }
   ],
   "metrics": {
-    "week_start": "2026-10-19",
-    "week_end": "2026-10-25",
+    "week_start": "2026-10-26",
+    "week_end": "2026-11-01",
     "this_week": {
+      "counts": {
+        "Updated DRHP": 1,
+        "Other": 1,
+        "Addendum": 2
+      },
+      "filings": [
+        {
+          "id": "105485",
+          "date": "2026-10-29",
+          "title": "Carlsberg India Limited- UDRHP-1 Carlsberg India Limited - Draft Abridged Prospectus",
+          "company": "Carlsberg India",
+          "type": "Updated DRHP",
+          "url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/carlsberg-india-limited-udrhp-1_105485.html"
+        },
+        {
+          "id": "105445",
+          "date": "2026-10-27",
+          "title": "INTELLIUS RECODE LIMITED - Notice to Investors",
+          "company": "INTELLIUS RECODE LIMITED - Notice to Investors",
+          "type": "Other",
+          "url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/intellius-recode-limited-notice-to-investors_105445.html"
+        },
+        {
+          "id": "105418",
+          "date": "2026-10-26",
+          "title": "Oravel Stays Limited - Addendum to DRHP",
+          "company": "Oravel Stays",
+          "type": "Addendum",
+          "url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/oravel-stays-limited-addendum-to-drhp_105418.html"
+        },
+        {
+          "id": "105416",
+          "date": "2026-10-26",
+          "title": "Integris Medtech Limited -  Addendum to DRHP",
+          "company": "Integris Medtech",
+          "type": "Addendum",
+          "url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/integris-medtech-limited-addendum-to-drhp_105416.html"
+        }
+      ]
+    },
+    "prev_week": {
       "counts": {
         "DRHP": 2,
         "Addendum": 1
@@ -236,73 +277,7 @@
         }
       ]
     },
-    "prev_week": {
-      "counts": {
-        "Updated DRHP": 1,
-        "DRHP": 1,
-        "Addendum": 1
-      },
-      "filings": [
-        {
-          "id": "105258",
-          "date": "2026-10-14",
-          "title": "Paramotor Digital Technology Limited \u2013 UDRHP-I Paramotor Digital Technology Limited -  Draft Abridged Prospectus(UDRHP-I)",
-          "company": "Paramotor Digital Technology",
-          "type": "Updated DRHP",
-          "url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/paramotor-digital-technology-limited-udrhp-i_105258.html"
-        },
-        {
-          "id": "105196",
-          "date": "2026-10-13",
-          "title": "Soleos Energy Limited \u2013 DRHP Soleos Energy Limited -  Draft Abridged Prospectus",
-          "company": "Soleos Energy",
-          "type": "DRHP",
-          "url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/soleos-energy-limited-drhp_105196.html"
-        },
-        {
-          "id": "105234",
-          "date": "2026-10-12",
-          "title": "OSWAL CABLES LIMITED - Addendum to DRHP",
-          "company": "OSWAL CABLES",
-          "type": "Addendum",
-          "url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/oswal-cables-limited-addendum-to-drhp_105234.html"
-        }
-      ]
-    },
-    "early_next_week": [
-      {
-        "id": "105485",
-        "date": "2026-10-29",
-        "title": "Carlsberg India Limited- UDRHP-1 Carlsberg India Limited - Draft Abridged Prospectus",
-        "company": "Carlsberg India",
-        "type": "Updated DRHP",
-        "url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/carlsberg-india-limited-udrhp-1_105485.html"
-      },
-      {
-        "id": "105445",
-        "date": "2026-10-27",
-        "title": "INTELLIUS RECODE LIMITED - Notice to Investors",
-        "company": "INTELLIUS RECODE LIMITED - Notice to Investors",
-        "type": "Other",
-        "url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/intellius-recode-limited-notice-to-investors_105445.html"
-      },
-      {
-        "id": "105418",
-        "date": "2026-10-26",
-        "title": "Oravel Stays Limited - Addendum to DRHP",
-        "company": "Oravel Stays",
-        "type": "Addendum",
-        "url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/oravel-stays-limited-addendum-to-drhp_105418.html"
-      },
-      {
-        "id": "105416",
-        "date": "2026-10-26",
-        "title": "Integris Medtech Limited -  Addendum to DRHP",
-        "company": "Integris Medtech",
-        "type": "Addendum",
-        "url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/integris-medtech-limited-addendum-to-drhp_105416.html"
-      }
-    ],
+    "early_next_week": [],
     "new_since_last_run": 17
   }
 }
