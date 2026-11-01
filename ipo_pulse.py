@@ -134,8 +134,9 @@ def new_since_last_snapshot(rows: list[dict], today: dt.date) -> list[dict]:
 PROMPT = """You write "IPO Pulse", a weekly 5-line note on India's IPO pipeline.
 Use ONLY the JSON below (SEBI's register of draft offer documents). Never invent
 issue sizes, sectors, valuations or dates. If you infer a theme from company names,
-say "based on company names". Exactly 5 numbered lines, each under 35 words:
-1) new DRHPs this week vs last week (counts + names)
+say "based on company names". Plain text only: no markdown, no links, no URLs. Ignore filings of type "Other" (notices) unless relevant.
+Exactly 5 numbered lines, each under 35 words:
+1) start with the count of NEW DRHPs this week vs last week (say "No new DRHPs" if zero), with names
 2) the trend
 3) a theme or cluster, if any (else: notable names)
 4) one filing to watch and why: prefer an Addendum or Updated DRHP (it means the filing is progressing through SEBI review); never call a fresh DRHP "progressing"
