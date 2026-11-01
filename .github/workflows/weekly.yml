@@ -1,0 +1,27 @@
+name: IPO Pulse weekly
+on:
+  schedule:
+    - cron: "30 1 * * 1"   # Mondays 07:00 IST
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r requirements.txt
+      - run: python ipo_pulse.py
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          FEEDBACK_URL: ${{ vars.FEEDBACK_URL }}
+          SITE_URL: ${{ vars.SITE_URL }}
+      - name: Commit snapshot and page
+        run: |
+          git config user.name "ipo-pulse-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data site
+          git commit -m "IPO Pulse: weekly run" || echo "No changes"
+          git push

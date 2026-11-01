@@ -1,0 +1,156 @@
+{
+  "rows": [
+    {
+      "id": "105418",
+      "date": "2026-10-26",
+      "title": "Oravel Stays Limited - Addendum to DRHP",
+      "company": "Oravel Stays",
+      "type": "Addendum",
+      "url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/oravel-stays-limited-addendum-to-drhp_105418.html"
+    },
+    {
+      "id": "105416",
+      "date": "2026-10-26",
+      "title": "Integris Medtech Limited - Addendum to DRHP",
+      "company": "Integris Medtech",
+      "type": "Addendum",
+      "url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/integris-medtech-limited-addendum-to-drhp_105416.html"
+    },
+    {
+      "id": "105424",
+      "date": "2026-10-21",
+      "title": "GAMP Services Limited- DRHP",
+      "company": "GAMP Services",
+      "type": "DRHP",
+      "url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/gamp-services-limited-drhp_105424.html"
+    },
+    {
+      "id": "105347",
+      "date": "2026-10-21",
+      "title": "Hunger Pangs Limited \u2013 DRHP",
+      "company": "Hunger Pangs",
+      "type": "DRHP",
+      "url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/hunger-pangs-limited-drhp_105347.html"
+    },
+    {
+      "id": "105343",
+      "date": "2026-10-21",
+      "title": "Tablespace Technologies Limited - Addendum to DRHP",
+      "company": "Tablespace Technologies",
+      "type": "Addendum",
+      "url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/tablespace-technologies-limited-addendum-to-drhp_105343.html"
+    },
+    {
+      "id": "105258",
+      "date": "2026-10-14",
+      "title": "Paramotor Digital Technology Limited \u2013 UDRHP-I",
+      "company": "Paramotor Digital Technology",
+      "type": "Updated DRHP",
+      "url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/paramotor-digital-technology-limited-udrhp-i_105258.html"
+    },
+    {
+      "id": "105196",
+      "date": "2026-10-13",
+      "title": "Soleos Energy Limited \u2013 DRHP",
+      "company": "Soleos Energy",
+      "type": "DRHP",
+      "url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/soleos-energy-limited-drhp_105196.html"
+    },
+    {
+      "id": "105234",
+      "date": "2026-10-12",
+      "title": "OSWAL CABLES LIMITED - Addendum to DRHP",
+      "company": "OSWAL CABLES",
+      "type": "Addendum",
+      "url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/oswal-cables-limited-addendum-to-drhp_105234.html"
+    }
+  ],
+  "metrics": {
+    "week_start": "2026-10-19",
+    "week_end": "2026-10-25",
+    "this_week": {
+      "counts": {
+        "DRHP": 2,
+        "Addendum": 1
+      },
+      "filings": [
+        {
+          "id": "105424",
+          "date": "2026-10-21",
+          "title": "GAMP Services Limited- DRHP",
+          "company": "GAMP Services",
+          "type": "DRHP",
+          "url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/gamp-services-limited-drhp_105424.html"
+        },
+        {
+          "id": "105347",
+          "date": "2026-10-21",
+          "title": "Hunger Pangs Limited \u2013 DRHP",
+          "company": "Hunger Pangs",
+          "type": "DRHP",
+          "url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/hunger-pangs-limited-drhp_105347.html"
+        },
+        {
+          "id": "105343",
+          "date": "2026-10-21",
+          "title": "Tablespace Technologies Limited - Addendum to DRHP",
+          "company": "Tablespace Technologies",
+          "type": "Addendum",
+          "url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/tablespace-technologies-limited-addendum-to-drhp_105343.html"
+        }
+      ]
+    },
+    "prev_week": {
+      "counts": {
+        "Updated DRHP": 1,
+        "DRHP": 1,
+        "Addendum": 1
+      },
+      "filings": [
+        {
+          "id": "105258",
+          "date": "2026-10-14",
+          "title": "Paramotor Digital Technology Limited \u2013 UDRHP-I",
+          "company": "Paramotor Digital Technology",
+          "type": "Updated DRHP",
+          "url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/paramotor-digital-technology-limited-udrhp-i_105258.html"
+        },
+        {
+          "id": "105196",
+          "date": "2026-10-13",
+          "title": "Soleos Energy Limited \u2013 DRHP",
+          "company": "Soleos Energy",
+          "type": "DRHP",
+          "url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/soleos-energy-limited-drhp_105196.html"
+        },
+        {
+          "id": "105234",
+          "date": "2026-10-12",
+          "title": "OSWAL CABLES LIMITED - Addendum to DRHP",
+          "company": "OSWAL CABLES",
+          "type": "Addendum",
+          "url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/oswal-cables-limited-addendum-to-drhp_105234.html"
+        }
+      ]
+    },
+    "early_next_week": [
+      {
+        "id": "105418",
+        "date": "2026-10-26",
+        "title": "Oravel Stays Limited - Addendum to DRHP",
+        "company": "Oravel Stays",
+        "type": "Addendum",
+        "url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/oravel-stays-limited-addendum-to-drhp_105418.html"
+      },
+      {
+        "id": "105416",
+        "date": "2026-10-26",
+        "title": "Integris Medtech Limited - Addendum to DRHP",
+        "company": "Integris Medtech",
+        "type": "Addendum",
+        "url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/integris-medtech-limited-addendum-to-drhp_105416.html"
+      }
+    ],
+    "new_since_last_run": 8
+  }
+}
